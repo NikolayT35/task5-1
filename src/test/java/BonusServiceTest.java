@@ -176,4 +176,28 @@ class BonusServiceTest {
 
         assertEquals(expected, actual);
     }
+        @Test
+        void shouldCalculateRegisteredBelowZero() {
+            BonusService service = new BonusService();
+
+            long amount = -1_663_999;
+            boolean registered = true;
+            long expected = -499;
+
+            long actual = service.calculate(amount, registered);
+            assertEquals(expected, actual);
+        }
+
+        @Test
+        void shouldCalculateNotRegisteredBelowZero() {
+            BonusService service = new BonusService();
+
+            long amount = -4_999_999;
+            boolean registered = false;
+            long expected = -499;
+
+            long actual = service.calculate(amount, registered);
+
+            assertEquals(expected, actual);
+    }
 }
